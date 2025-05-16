@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colchones</title>
+    
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+  <div class="cabecera">
+    <div class="logo-titulo-carrito">
+      <div class="logo-titulo">
+        <a href="/index.html">
+          <img src="../image/logo.png" alt="Logo de la tienda" class="logo">
+        </a>
+      </div>
+      <div class="titulo">
+        <h1>Tu Tienda de Colchones</h1>
+      </div>
+      <div class="carrito-texto">
+        <a href="./carrito.html">
+          <img src="../image/carrito-rojo.png" alt="Carrito de compras" class="carrito">
+        </a>
+      </div>
+      <!-- Menú Hamburguesa -->
+      <button class="menu-toggle" id="menu-toggle">&#9776;</button>
+    </div>
+
+    <!-- Menú de navegación -->
+    <nav id="menu-nav" class="menu-nav">
+      <ul>
+        <li><a href="/index.html">Inicio</a></li>
+        <li><a href="../files/colchones.html">Colchones</a></li>
+        <li><a href="../files/sommiers.html">Sommiers</a></li>
+        
+        <li><a href="../files/accesorios.html">Accesorios</a></li>
+        <li><a href="../files/contactos.html">Contactos</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+    <main>
+        <div class="banner">
+            <h2>Tu almohada soñada está aqui</h2>
+        </div>
+
+        <div class="colchones-grid">
+            <div class="colchon-card">
+                <img src="../image/almohada1.webp" alt="Colchón Modelo 1">
+                <h3>Almohada Modelo 1</h3>
+                <p>Descripción del modelo 1. Confort y soporte equilibrado.</p>
+                
+                <a href="./card-producto-almohadas.html" onclick="guardarProducto(event, '../image/almohada1.webp', 'Almohada Modelo 1', 'Descripción del modelo 1. Confort y soporte equilibrado.')">Ver Más</a>
+            </div>
+            <div class="colchon-card">
+                <img src="../image/almohada2.webp" alt="Colchón Modelo 2">
+                <h3>Almohada Modelo 2</h3>
+                <p>Descripción del modelo 2. Ideal para quienes buscan suavidad.</p>
+                
+                <a href="./card-producto-almohadas.html" onclick="guardarProducto(event, '../image/almohada2.webp', 'Almohada Modelo 1', 'Descripción del modelo 1. Confort y soporte equilibrado.')">Ver Más</a>
+            </div>
+            <div class="colchon-card">
+                <img src="../image/almohada3.webp" alt="Colchón Modelo 3">
+                <h3>Almohada Modelo 3</h3>
+                <p>Descripción del modelo 3. Soporte ortopédico avanzado.</p>
+              
+                <a href="./card-producto-almohadas.html" onclick="guardarProducto(event, '../image/almohada3.webp', 'Almohada Modelo 1', 'Descripción del modelo 1. Confort y soporte equilibrado.')">Ver Más</a>
+            </div>
+            <div class="colchon-card">
+                <img src="../image/almohada4.png" alt="Colchón Modelo 4">
+                <h3>Almohada Modelo 4</h3>
+                <p>Descripción del modelo 4. Tecnología híbrida para máximo confort.</p>
+               
+                <a href="./card-producto-almohadas.html" onclick="guardarProducto(event, '../image/almohada4.png', 'Almohada Modelo 1', 'Descripción del modelo 1. Confort y soporte equilibrado.')">Ver Más</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="redes-sociales">
+            
+            <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://www.instagram.com" target="_blank"rel="noopener">Instagram</a>
+            <a href="https://www.twitter.com" target="_blank" rel="noopener">Twitter</a>
+        </div> 
+        <p>© 2025 Todos los derechos reservados. Tienda de Colchones.</p>
+    </footer>
+    <script>
+        function guardarProducto(e, imagen, titulo, descripcion) {
+            e.preventDefault(); // Prevenir navegación automática
+            const datos = { imagen, titulo, descripcion };
+            localStorage.setItem('productoSeleccionado', JSON.stringify(datos));
+            window.location.href = './card-producto-almohadas.html';
+        }
+         document.getElementById('menu-toggle').addEventListener('click', function () {
+        document.getElementById('menu-nav').classList.toggle('active');
+            });
+     </script>
+</body>
+</html>

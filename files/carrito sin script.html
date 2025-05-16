@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <!-- Tu encabezado -->
+        <div class="cabecera">
+            <div class="logo-titulo">
+                <a href="../index.html">
+                    <img src="../image/logo.png" alt="Logo de la tienda" class="logo">
+                </a>
+                <h1>Tu Tienda de Colchones</h1>
+            
+                <div class="carrito-texto">
+                    <a href="carrito.html">
+                        <img src="../image/carrito-rojo.png" alt="Logo de la tienda" class="carrito">
+                    </a>
+                    
+                </div>  
+            </div>
+   
+    
+   
+            <nav>
+                
+                <ul>
+                
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="colchones.html">Colchones</a></li>
+                    <li><a href="sommiers.html">Sommiers</a></li>
+                    <li><a href="almohadas.html">Almohadas</a></li>
+                    <li><a href="accesorios.html">Accesorios</a></li>
+                    <li><a href="contactos.html">Contactos</a></li>
+                </ul>
+            </nav>
+       </div>
+    </header>
+    
+    <main>
+        <h1>Carrito de Compras</h1>
+        <div id="productos">
+            <!-- Lista de productos -->
+            <div class="producto">
+                <h2>Colchón Premium</h2>
+                <p>Precio: $500</p>
+                <button onclick="agregarAlCarrito('Colchón Premium', 500)">Agregar al Carrito</button>
+            </div>
+            <div class="producto">
+                <h2>Sommiers Deluxe</h2>
+                <p>Precio: $800</p>
+                <button onclick="agregarAlCarrito('Sommiers Deluxe', 800)">Agregar al Carrito</button>
+            </div>
+        </div>
+        
+        <h2>Carrito</h2>
+        <ul id="carrito">
+            <!-- Items del carrito -->
+        </ul>
+        <p>Total: <span id="total">$0</span></p>
+    </main>
+    
+    <footer>
+        <!-- Tu pie de página -->
+        <div class="redes-sociales">
+            
+            <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://www.instagram.com" target="_blank"rel="noopener">Instagram</a>
+            <a href="https://www.twitter.com" target="_blank" rel="noopener">Twitter</a>
+        </div> 
+        <p>© 2025 Todos los derechos reservados. Tienda de Colchones.</p>
+    </footer>
+    <script src="carrito.js"></script>
+</body>
+</html>

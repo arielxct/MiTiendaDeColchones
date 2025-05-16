@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Producto</title>
+    <link rel="stylesheet" href="../css/style.css">
+   
+</head>
+<body>
+   <header>
+  <div class="cabecera">
+    <div class="logo-titulo-carrito">
+      <div class="logo-titulo">
+        <a href="/index.html">
+          <img src="../image/logo.png" alt="Logo de la tienda" class="logo">
+        </a>
+      </div>
+      <div class="titulo">
+        <h1>Tu Tienda de Colchones</h1>
+      </div>
+      <div class="carrito-texto">
+        <a href="./carrito.html">
+          <img src="../image/carrito-rojo.png" alt="Carrito de compras" class="carrito">
+        </a>
+      </div>
+      <!-- Menú Hamburguesa -->
+      <button class="menu-toggle" id="menu-toggle">&#9776;</button>
+    </div>
+
+    <!-- Menú de navegación -->
+    <nav id="menu-nav" class="menu-nav">
+      <ul>
+        <li><a href="/index.html">Inicio</a></li>
+        
+        <li><a href="../files/sommiers.html">Sommiers</a></li>
+        <li><a href="../files/almohadas.html">Almohadas</a></li>
+        <li><a href="../files/accesorios.html">Accesorios</a></li>
+        <li><a href="../files/contactos.html">Contactos</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <main>
+        <div class="banner">
+            <h2>COMPRE SU PRODUCTO - LEA MAS DE EL Y HAGA SU COMPRA</h2>
+        </div>
+        <div class="card-producto-grid">
+            <div class="imagen-mas-boton-comprar">
+                <div class="imagen-card">
+                    <img id="producto-imagen" src="" alt="">
+                    <h3 id="producto-titulo"></h3>
+                    <p id="producto-descripcion"></p>
+                    <a href="colchones.html">Volver</a>
+                </div>
+                <div class="botones-comprar-agregar-carrito">
+                    <div class="boton-comprar">
+                        <a href="./carrito.html">
+                           <!-- <button id="boton-comprar">Comprar</button>-->
+                            <button id="boton-comprar" onclick="agregarProductoAlCarrito(document.getElementById('producto-titulo').innerText)">Comprar</button>
+                        </a>
+                    </div>
+                    <div class="boton-agregar-carrito">
+                        <button id="boton-agregar-carrito" onclick="agregarProductoAlCarrito(document.getElementById('producto-titulo').innerText)">Agregar al Carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="precios-modos-pagos">
+                <div class="datos-producto">
+                    <div class="elegir-medida">
+                        <h3>Seleccionar la Medida deseada</h3>
+                        <select name="medida-producto" id="medida-seleccionada-select" title="Seleccione la medida del producto" onchange="actualizarPrecio()">
+                            <option value="1300000">1.40 x 1.90 mts</option>
+                            <option value="1600000">1.60 x 1.90 mts</option>
+                            <option value="2000000">2.00 x 2.00 mts</option>
+                        </select>
+                    </div>
+                    <div class="a-pagar">
+                        <div class="medida-seleccionada">
+                            <h3>Precio Medida Seleccionada</h3>
+                            <p id="medida-seleccionada">0</p>
+                            <label for="medida-seleccionada-select">Pesos</label>
+                        </div>
+                        <div class="descuentos-precio-medida-seleccionada">
+                            <h3>Descuentos</h3>
+                            <p id="descuentos-precio-medida-seleccionada">10%</p>
+                        </div>
+                        <div class="precio-final">
+                            <h3>Precio Final</h3>
+                            <p id="precio-final">$</p>
+                            <label for="precio-final">Pesos</label>
+                        </div>
+                    </div>
+                    <div class="modos-pago">
+                        <h3>Medios de Pago</h3>
+                        <select name="modo-pago" id="modo-de-select" title="Seleccione su modo de pago" onchange="actualizarModoPago(this.value)">
+                            <option value="Efectivo">Efectivo</option>
+                            <option value="Debito">Debito</option>
+                            <option value="Visa">Visa</option>
+                            <option value="Mastercard">Mastercard</option>
+                            <option value="Mercado Pago">Mercado Pago</option>
+                            <option value="Modo">Modo</option>
+                        </select>
+                        <div class="modo-seleccionado">
+                            <h3>Modo Seleccionado</h3>
+                            <p id="modo-de-pago">Modo de pago seleccionado</p>
+                        </div>
+                    </div>
+                    <div class="seleccionar-medio-de-pago">
+                        <h3>Seleccionar forma de pago</h3>
+                        <h3>Formas de Pago - Contado/Cuotas</h3>
+                        <select name="medio-pago" id="medio-pago-select" title="Seleccione el medio de pago" onchange="actualizarFormaPago(this.value)">
+                            <option value="Contado">Contado</option>
+                            <option value="12 Cuotas">12 Cuotas</option>
+                            <option value="24 Cuotas">24 Cuotas</option>
+                            <option value="36 Cuotas">36 Cuotas</option>
+                            <option value="48 Cuotas">48 Cuotas</option>
+                        </select>
+                        <div class="forma-de-pago">  <h3>Forma de Pago Seleccionada</h3>
+                            <p id="forma-de-pago">Forma de Pago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="redes-sociales">
+            <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://www.instagram.com" target="_blank"rel="noopener">Instagram</a>
+            <a href="https://www.twitter.com" target="_blank" rel="noopener">Twitter</a>
+        </div>
+        <p>© 2025 Todos los derechos reservados. Tienda de Colchones.</p>
+    </footer>
+    <script>
+        
+    function actualizarPrecio() {
+        const precioBase = parseFloat(document.getElementById('medida-seleccionada-select').value);
+        const descuentoTexto = document.getElementById('descuentos-precio-medida-seleccionada').innerText;
+        const descuento = parseFloat(descuentoTexto.replace('%', '')) / 100;
+        const precioFinal = precioBase * (1 - descuento);
+        const precioFormateado = `$${precioFinal.toLocaleString('es-AR')}`;
+        document.getElementById('precio-final').innerText = precioFormateado;
+        document.getElementById('medida-seleccionada').innerText =  `$${precioBase.toLocaleString('es-AR')}`; // Muestra el precio base
+    }
+
+    function agregarProductoAlCarrito(nombreProducto) {
+        const select = document.getElementById('medida-seleccionada-select');
+        const medidaTexto = select.options[select.selectedIndex].text;
+        const precioBase = parseFloat(select.value);
+        const descuentoTexto = document.getElementById('descuentos-precio-medida-seleccionada').innerText;
+        const descuento = parseFloat(descuentoTexto.replace('%', '')) / 100;
+        const precioFinal = precioBase * (1 - descuento);
+        const producto = {
+            nombre: `${nombreProducto} (${medidaTexto})`,
+            precio: precioFinal
+        };
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        carrito.push(producto);
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        window.location.href = 'carrito.html';
+    }
+
+    function actualizarModoPago(modo) {
+        document.getElementById('modo-de-pago').innerText = modo;
+    }
+
+    function actualizarFormaPago(forma) {
+        document.getElementById('forma-de-pago').innerText = forma;
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const datos = JSON.parse(localStorage.getItem('productoSeleccionado'));
+        if (datos) {
+            document.getElementById('producto-imagen').src = datos.imagen;
+            document.getElementById('producto-imagen').alt = datos.titulo;
+            document.getElementById('producto-titulo').innerText = datos.titulo;
+            document.getElementById('producto-descripcion').innerText = datos.descripcion;
+            actualizarPrecio();
+
+            // Inicializa modo y forma de pago
+            const modoSelect = document.getElementById('modo-de-select');
+            actualizarModoPago(modoSelect.value);
+
+            const formaSelect = document.getElementById('medio-pago-select');
+            actualizarFormaPago(formaSelect.value);
+        } else {
+            document.querySelector('.imagen-card').innerHTML = '<p>Producto no encontrado.</p>';
+        }
+    });
+    document.getElementById('menu-toggle').addEventListener('click', function () {
+        document.getElementById('menu-nav').classList.toggle('active');
+            });
+    
+</script>
+</body>
+</html>
