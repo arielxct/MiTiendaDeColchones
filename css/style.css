@@ -23,7 +23,7 @@ LINEA     -              SECCION
 736 – Pagina Pagos
 811 – Media queries
 890 – Estilo Menu hamburguesa
-
+932 - Estilo responsivo para carrito
 
 */
 
@@ -657,12 +657,12 @@ footer {
 
 /* --------------- Carrito estilo agregado de la pagina carrito------------------ */
 .carrito-container {
-            padding: 20px;
-            margin: 20px auto;
+            padding: 10px;
+            margin: 10px auto;
             background-color: bisque;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
+            max-width: 50em;
         }
 
         .carrito-lista {
@@ -677,6 +677,7 @@ footer {
             align-items: center;
             padding: 10px;
             border-bottom: 1px solid #ddd;
+            border-color: #0056b3;
         }
 
         .carrito-lista li:last-child {
@@ -926,4 +927,54 @@ footer {
   .menu-nav ul li {
     margin: 10px 0;
   }
+}
+
+/* --------------- ESTILO AGREGADO PARA EL NUEVO CARRITO----------------- */
+/* -------------------------------
+   RESPONSIVE CARRITO
+--------------------------------*/
+@media (max-width: 768px) {
+    .logo-titulo-carrito {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .carrito-lista li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .carrito-lista li span {
+        text-align: left;
+    }
+
+    .carrito-botones {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .carrito-botones button {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carrito-container {
+        padding: 10px;
+    }
+
+    .carrito-lista li button {
+        font-size: 0.9em;
+        padding: 5px 8px;
+    }
+
+    .carrito-total {
+        text-align: center;
+    }
 }

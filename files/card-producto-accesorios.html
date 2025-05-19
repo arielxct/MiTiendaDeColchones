@@ -134,64 +134,69 @@
    <script>
         
     function actualizarPrecio() {
-        const precioBase = parseFloat(document.getElementById('medida-seleccionada-select').value);
-        const descuentoTexto = document.getElementById('descuentos-precio-medida-seleccionada').innerText;
-        const descuento = parseFloat(descuentoTexto.replace('%', '')) / 100;
-        const precioFinal = precioBase * (1 - descuento);
-        const precioFormateado = `$${precioFinal.toLocaleString('es-AR')}`;
-        document.getElementById('precio-final').innerText = precioFormateado;
-        document.getElementById('medida-seleccionada').innerText =  `$${precioBase.toLocaleString('es-AR')}`; // Muestra el precio base
-    }
-
-    function agregarProductoAlCarrito(nombreProducto) {
-        const select = document.getElementById('medida-seleccionada-select');
-        const medidaTexto = select.options[select.selectedIndex].text;
-        const precioBase = parseFloat(select.value);
-        const descuentoTexto = document.getElementById('descuentos-precio-medida-seleccionada').innerText;
-        const descuento = parseFloat(descuentoTexto.replace('%', '')) / 100;
-        const precioFinal = precioBase * (1 - descuento);
-        const producto = {
-            nombre: `${nombreProducto} (${medidaTexto})`,
-            precio: precioFinal
-        };
-        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-        carrito.push(producto);
-        localStorage.setItem('carrito', JSON.stringify(carrito));
-        window.location.href = 'carrito.html';
-    }
-
-    function actualizarModoPago(modo) {
-        document.getElementById('modo-de-pago').innerText = modo;
-    }
-
-    function actualizarFormaPago(forma) {
-        document.getElementById('forma-de-pago').innerText = forma;
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const datos = JSON.parse(localStorage.getItem('productoSeleccionado'));
-        if (datos) {
-            document.getElementById('producto-imagen').src = datos.imagen;
-            document.getElementById('producto-imagen').alt = datos.titulo;
-            document.getElementById('producto-titulo').innerText = datos.titulo;
-            document.getElementById('producto-descripcion').innerText = datos.descripcion;
-            actualizarPrecio();
-
-            // Inicializa modo y forma de pago
-            const modoSelect = document.getElementById('modo-de-select');
-            actualizarModoPago(modoSelect.value);
-
-            const formaSelect = document.getElementById('medio-pago-select');
-            actualizarFormaPago(formaSelect.value);
-        } else {
-            document.querySelector('.imagen-card').innerHTML = '<p>Producto no encontrado.</p>';
+            const precioBase = parseFloat(document.getElementById('medida-seleccionada-select').value);
+            const descuentoTexto = document.getElementById('descuentos-precio-medida-seleccionada').innerText;
+            const descuento = parseFloat(descuentoTexto.replace('%', '')) / 100;
+            const precioFinal = precioBase * (1 - descuento);
+            const precioFormateado = `$${precioFinal.toLocaleString('es-AR')}`;
+            document.getElementById('precio-final').innerText = precioFormateado;
+            document.getElementById('medida-seleccionada').innerText =  `$${precioBase.toLocaleString('es-AR')}`;
         }
-    });
-        document.getElementById('menu-toggle').addEventListener('click', function () {
-        document.getElementById('menu-nav').classList.toggle('active');
-    });
 
-    
+        function agregarProductoAlCarrito(nombreProducto) {
+            const select = document.getElementById('medida-seleccionada-select');
+            const medidaTexto = select.options[select.selectedIndex].text;
+            const precioBase = parseFloat(select.value);
+            const descuentoTexto = document.getElementById('descuentos-precio-medida-seleccionada').innerText;
+            const descuento = parseFloat(descuentoTexto.replace('%', '')) / 100;
+            const precioFinal = precioBase * (1 - descuento);
+
+             let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            let productoExistente = carrito.find(item => item.nombre === `${nombreProducto} (${medidaTexto})`);
+
+            if (productoExistente) {
+                productoExistente.cantidad += 1;
+            } else {
+                 carrito.push({
+                    nombre: `${nombreProducto} (${medidaTexto})`,
+                    precio: precioFinal,
+                    cantidad: 1
+                });
+            }
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            window.location.href = 'carrito.html';
+        }
+
+        function actualizarModoPago(modo) {
+            document.getElementById('modo-de-pago').innerText = modo;
+        }
+
+        function actualizarFormaPago(forma) {
+            document.getElementById('forma-de-pago').innerText = forma;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const datos = JSON.parse(localStorage.getItem('productoSeleccionado'));
+            if (datos) {
+                document.getElementById('producto-imagen').src = datos.imagen;
+                document.getElementById('producto-imagen').alt = datos.titulo;
+                document.getElementById('producto-titulo').innerText = datos.titulo;
+                document.getElementById('producto-descripcion').innerText = datos.descripcion;
+                actualizarPrecio();
+
+                // Inicializa modo y forma de pago
+                const modoSelect = document.getElementById('modo-de-select');
+                actualizarModoPago(modoSelect.value);
+
+                const formaSelect = document.getElementById('medio-pago-select');
+                actualizarFormaPago(formaSelect.value);
+            } else {
+                document.querySelector('.imagen-card').innerHTML = '<p>Producto no encontrado.</p>';
+            }
+             document.getElementById('menu-toggle').addEventListener('click', function () {
+        document.getElementById('menu-nav').classList.toggle('active');
+            });
+        });
 </script>
 </body>
 </html>

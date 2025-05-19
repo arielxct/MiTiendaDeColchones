@@ -11,11 +11,10 @@
         <div class="cabecera">
             <div class="logo-titulo-carrito">
                 <div class="logo-titulo">
-        <a href="https://arielxct.github.io/MiTiendaDeColchones/">
-          <!-- <a href="/index.html">-->
-          <img src="../image/logo.png" alt="Logo de la tienda" class="logo">
-        </a>
-      </div>
+                    <a href="https://arielxct.github.io/MiTiendaDeColchones/">
+                        <img src="../image/logo.png" alt="Logo de la tienda" class="logo">
+                    </a>
+                </div>
                 <div class="titulo">
                     <h1>Tu Tienda de Colchones</h1>
                 </div>
@@ -59,7 +58,7 @@
                 <input type="text" id="vencimiento" name="vencimiento" placeholder="MM/AA" required pattern="^(0[1-9]|1[0-2])\/\d{2}$" title="Formato requerido: MM/AA">
 
                 <label for="cvv">CVV:</label>
-                <input type="text" id="cvv" name="cvv" placeholder="ingrese 3 o 4 numeros" required pattern="\d{3,4}" maxlength="4" inputmode="numeric" title="CVV debe tener 3 o 4 dígitos">
+                <input type="text" id="cvv" name="cvv" placeholder="ingrese3 o 4 numeros" required pattern="\d{3,4}" maxlength="4" inputmode="numeric" title="CVV debe tener 3 o 4 dígitos">
 
                 <label for="cuotas">Cuotas:</label>
                 <select id="cuotas" name="cuotas">
@@ -75,7 +74,6 @@
             <div id="mensaje-pago"></div>
         </div>
     </main>
-
     <footer>
         <div class="redes-sociales">
             <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
@@ -84,7 +82,6 @@
         </div>
         <p>© 2025 Todos los derechos reservados. Tienda de Colchones.</p>
     </footer>
-
     <script>
         document.getElementById('pagos-form').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -96,18 +93,16 @@
             const cvv = document.getElementById('cvv').value;
             const cuotas = document.getElementById('cuotas').value;
 
-            // Simulación de API ficticia (aquí iría la llamada real a tu API)
+            // Simulación de API ficticia
             const respuestaApi = {
-                estado: 'aprobado', // o 'rechazado'
-                mensaje: `Pago de $1000 con ${tarjeta} en ${cuotas} cuotas.` // Un mensaje genérico
+                estado: 'aprobado',
+                mensaje: `Pago de $1000 con ${tarjeta} en ${cuotas} cuotas.`
             };
 
             const mensajePago = document.getElementById('mensaje-pago');
             if (respuestaApi.estado === 'aprobado') {
-                mensajePago.innerText = 'PAGO APROBADO. Gracias por su compra. Lo esperamos!';
-                // Limpiar el carrito después de una compra exitosa
-                localStorage.removeItem('carrito');
-                // Redirigir a la página de inicio después de 2.5 segundos
+                mensajePago.innerText = 'PAGO APROBADO. ¡Gracias por su compra! ¡Lo esperamos!';
+                 localStorage.removeItem('carrito');
                 setTimeout(() => {
                     window.location.href='../index.html';
                 }, 2500);
@@ -116,7 +111,6 @@
                 mensajePago.innerText = 'Pago Rechazado. Por favor, intente nuevamente.';
             }
 
-            // Aquí podrías limpiar el formulario si lo deseas
             document.getElementById('pagos-form').reset();
         });
     </script>

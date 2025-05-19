@@ -19,25 +19,26 @@ El sitio web está compuesto por las siguientes páginas principales:
 * **files/card-producto-colchones.html:** Página de detalle de un producto (colchón), donde se puede seleccionar la medida y agregar al carrito.
 * **files/card-producto-sommiers.html:** Página de detalle de un producto (sommiers), donde se puede seleccionar la medida y agregar al carrito.
 * **files/card-producto-almohadas.html:** Página de detalle de un producto (almohada), donde se puede seleccionar la medida y agregar al carrito.
-* **files/card-producto-accesoriso.html:** Página de detalle de un producto (acolvhado), donde se puede seleccionar la medida y agregar al carrito.
+* **files/card-producto-accesorios.html:** Página de detalle de un producto (acolchado), donde se puede seleccionar la medida y agregar al carrito.
 * **files/carrito.html:** Página que muestra los productos agregados al carrito, el total y la opción de finalizar la compra.
 * **files/pagos.html:** Página para realizar el pago de la compra.
 
 ## Funcionalidades
 
-* **Navegación:** Menú de navegación principal en todas las páginas, con enlaces a las diferentes secciones del sitio.
+* **Navegación:** Menú de navegación principal en todas las páginas, con enlaces a las diferentes secciones del sitio. Contiene un logo que permite volver a la página principal. Y un logo de carrito para llevar a el directamente. El Menu al ser responsivo se transforma en un menu hamburguesa.
 * **Visualización de Productos:** Lista de productos en la página de colchones, con imágenes, título, descripción y enlace a la página de detalle.
 * **Detalle de Producto:** Página de detalle de un producto, con imagen, título, descripción, selección de medida, precio y opción de agregar al carrito.
 * **Carrito de Compras:**
     * Visualización de los productos agregados al carrito, con nombre, precio y total.
     * Opción de vaciar el carrito.
+    * Opcion de sumar o restar unidades a algunas de los articulos seleccionados. Tambien podras eliminarlo del carrito. 
     * Opción de finalizar la compra, que redirige a la página de pagos.
 * **Proceso de Pago:**
     * Página para ingresar los datos de la tarjeta de crédito/débito.
     * Simulación de procesamiento de pago.
     * Limpieza del carrito después de un pago aprobado.
     * Redirección a la página de inicio después de un pago aprobado.
-* **Diseño Responsivo:** El sitio está diseñado para adaptarse a diferentes tamaños de pantalla.
+* **Diseño Responsivo:** El sitio está diseñado para adaptarse a diferentes tamaños de pantalla. Hay cortes para los 794, 640 y 480 px. Para las diferentes paginas. 
 
 ## Tecnologías Utilizadas
 
@@ -50,8 +51,8 @@ El sitio web está compuesto por las siguientes páginas principales:
 
 1.  **Página de Inicio:** Explora el banner, el producto destacado y utiliza el menú de navegación para ir a las diferentes secciones.
 2.  **Colchones/Sommiers/Almohadas/Accesorios:** Navega por la lista de colchones / sommiers / almohadas / accesorios y haz clic en "Ver Más" para ver los detalles de un producto.
-3.  **Detalle del Producto:** Selecciona la medida del producto deseado, elige el modo de pago, la forma de pago y agrégalo al carrito.
-4.  **Carrito:** Revisa los productos en tu carrito y haz clic en "Pagar" para ir a la página de pagos, o "Vaciar Carrito" para eliminar todos los productos.
+3.  **Detalle del Producto:** Selecciona la medida del producto deseado, elige el modo de pago, la forma de pago y agrégalo al carrito. Tambien si desas comprar, hacer click en el boton "Comprar", y te llevara posteriormente a la página de pago.
+4.  **Carrito:** Revisa los productos en tu carrito y haz clic en "Pagar" para ir a la página de pagos, o "Vaciar Carrito" para eliminar todos los productos. Podras sumar, restar o eliminar un articulo.
 5.  **Pagos:** Ingresa los datos de tu tarjeta y realiza el pago.  Si el pago es aprobado, el carrito se vaciará y serás redirigido a la página de inicio.
 
 ## Notas Adicionales

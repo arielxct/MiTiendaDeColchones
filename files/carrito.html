@@ -6,18 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras</title>
     <link rel="stylesheet" href="../css/style.css">
-   
 </head>
 <body>
     <header>
         <div class="cabecera">
             <div class="logo-titulo-carrito">
-                <<div class="logo-titulo">
-        <a href="https://arielxct.github.io/MiTiendaDeColchones/">
-          <!-- <a href="/index.html">-->
-          <img src="../image/logo.png" alt="Logo de la tienda" class="logo">
-        </a>
-      </div>
+                <div class="logo-titulo">
+                    <a href="https://arielxct.github.io/MiTiendaDeColchones/">
+                        <img src="../image/logo.png" alt="Logo de la tienda" class="logo">
+                    </a>
+                </div>
                 <div class="titulo">
                     <h1>Tu Tienda de Colchones</h1>
                 </div>
@@ -39,12 +37,11 @@
             </nav>
         </div>
     </header>
-
     <main>
         <div class="carrito-container">
             <h2>Carrito de Compras</h2>
             <ul class="carrito-lista" id="carrito-lista">
-                </ul>
+            </ul>
             <p class="carrito-total" id="carrito-total">Total: $0</p>
             <div class="carrito-botones">
                 <button class="pagar" onclick="finalizarCompra()">Pagar</button>
@@ -53,7 +50,6 @@
             <p id="mensaje-compra" style="text-align: center; font-weight: bold;"></p>
         </div>
     </main>
-
     <footer>
         <div class="redes-sociales">
             <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
@@ -62,7 +58,6 @@
         </div>
         <p>© 2025 Todos los derechos reservados. Tienda de Colchones.</p>
     </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             mostrarCarrito();
@@ -85,12 +80,51 @@
                     listItem.innerHTML = `
                         <span>${producto.nombre}</span>
                         <span>$${producto.precio.toLocaleString('es-AR')}</span>
+                         <span>Cantidad: ${producto.cantidad}</span>
+                        <button data-nombre="${producto.nombre}" onclick="incrementarCantidad(event)">+</button>
+                        <button data-nombre="${producto.nombre}" onclick="decrementarCantidad(event)">-</button>
+                        <button data-nombre="${producto.nombre}" onclick="eliminarProducto(event)">Eliminar</button>
                     `;
                     carritoLista.appendChild(listItem);
-                    total += producto.precio;
+                    total += producto.precio * producto.cantidad;
                 });
                 carritoTotalElement.innerText = `Total: $${total.toLocaleString('es-AR')}`;
             }
+        }
+
+        function incrementarCantidad(event) {
+            const nombreProducto = event.target.dataset.nombre;
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            let productoEnCarrito = carrito.find(item => item.nombre === nombreProducto);
+
+            if (productoEnCarrito) {
+                productoEnCarrito.cantidad += 1;
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+                mostrarCarrito();
+            }
+        }
+
+       function decrementarCantidad(event) {
+            const nombreProducto = event.target.dataset.nombre;
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            let productoEnCarrito = carrito.find(item => item.nombre === nombreProducto);
+
+            if (productoEnCarrito) {
+                productoEnCarrito.cantidad -= 1;
+                 if (productoEnCarrito.cantidad <= 0) {
+                    carrito = carrito.filter(item => item.nombre !== nombreProducto);
+                }
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+                mostrarCarrito();
+            }
+        }
+
+        function eliminarProducto(event) {
+            const nombreProducto = event.target.dataset.nombre;
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            carrito = carrito.filter(item => item.nombre !== nombreProducto);
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            mostrarCarrito();
         }
 
         function finalizarCompra() {
@@ -99,8 +133,6 @@
                 mensajeCompra.innerText = "No hay productos para pagar.";
                 return;
             }
-
-            // Redirigir a la página de pagos
             window.location.href = '../files/pagos.html';
         }
 
@@ -110,5 +142,5 @@
         }
     </script>
 </body>
-</html>
 
+</html>
