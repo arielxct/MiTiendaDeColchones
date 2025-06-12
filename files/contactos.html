@@ -1,99 +1,101 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contactos</title>
-    
-    <link rel="stylesheet" href="../css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contactos</title>
+  <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
-    <header>
-        <<div class="cabecera">
-    <div class="logo-titulo-carrito">
-      <div class="logo-titulo">
-        <a href="https://arielxct.github.io/MiTiendaDeColchones/">
-          <!-- <a href="/index.html">-->
-          <img src="../image/logo.png" alt="Logo de la tienda" class="logo">
-        </a>
+  <header>
+    <div class="cabecera">
+      <div class="logo-titulo-carrito">
+        <div class="logo-titulo">
+          <a href="https://arielxct.github.io/MiTiendaDeColchones/">
+            <img src="../image/logo.png" alt="Logo de la tienda" class="logo"/>
+          </a>
+        </div>
+        <div class="titulo">
+          <h1>Tu Tienda de Colchones</h1>
+        </div>
+        <div class="carrito-texto">
+          <a href="./carrito.html">
+            <img src="../image/carrito-rojo.png" alt="Carrito de compras" class="carrito"/>
+          </a>
+        </div>
+        <button class="menu-toggle" id="menu-toggle">&#9776;</button>
       </div>
-      <div class="titulo">
-        <h1>Tu Tienda de Colchones</h1>
-      </div>
-      <div class="carrito-texto">
-        <a href="./carrito.html">
-          <img src="../image/carrito-rojo.png" alt="Carrito de compras" class="carrito">
-        </a>
-      </div>
-      <!-- Menú Hamburguesa -->
-      <button class="menu-toggle" id="menu-toggle">&#9776;</button>
+
+      <nav id="menu-nav" class="menu-nav">
+        <ul>
+          <li><a href="https://arielxct.github.io/MiTiendaDeColchones/">Inicio</a></li>
+          <li><a href="../files/colchones.html">Colchones</a></li>
+          <li><a href="../files/sommiers.html">Sommiers</a></li>
+          <li><a href="../files/almohadas.html">Almohadas</a></li>
+          <li><a href="../files/accesorios.html">Accesorios</a></li>
+          <li><a href="../files/contactos.html">Contactos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-contacto">
+    <div class="banner_contacto">
+      <h2>Contáctanos</h2>
     </div>
 
-    <!-- Menú de navegación -->
-    <nav id="menu-nav" class="menu-nav">
-      <ul>
-        <li><a href="https://arielxct.github.io/MiTiendaDeColchones/">Inicio</a></li>
-        <li><a href="../files/colchones.html">Colchones</a></li>
-        <li><a href="../files/sommiers.html">Sommiers</a></li>
-        <li><a href="../files/almohadas.html">Almohadas</a></li>
-        <li><a href="../files/accesorios.html">Accesorios</a></li>
-        <li><a href="../files/contactos.html">Contactos</a></li>
-      </ul>
-    </nav>
-  </div>
-    </header>
+    <div class="formulario-contacto">
+      <h3>Formulario de Contacto</h3>
 
-    <main class="main-contacto">
-        <div class="banner_contacto">
-            <h2>Contáctanos</h2>
-        </div>
+      <form id="form-contacto" action="https://formspree.io/f/meoapyov" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required minlength="3" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo letras y espacios">
 
-        <div class="formulario-contacto">
-            <h3>Formulario de Contacto</h3>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
 
-         
-            
-            <form action="https://formspree.io/f/meoapyov" method="post">
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" required minlength="10" maxlength="500" placeholder="Escriba al menos 10 caracteres..."></textarea>
 
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
+        <button type="submit">Enviar Mensaje</button>
+      </form>
+    </div>
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+    <div class="informacion-contacto">
+      <h3>Mapa de nuestra ubicación</h3>
+    </div>
 
-                <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" required></textarea>
+    <div class="mapa-ubicacion">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3286.0332631534015!2d-58.44513552381715!3d-34.58211877292151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb582c99c155f%3A0x6b2995135152b759!2sAv.%22Del%20Libertador%22%20%231234!5e0!3m2!1ses!2sar!4v1708519722216!5m2!1ses!2sar" width="600" height="400"></iframe>
+    </div>
+  </main>
 
-                <button type="submit">Enviar Mensaje</button>
-            </form>
-        </div>
-        <div class="informacion-contacto">
-            <h3>Mapa de nuestra ubicacion</h3>
-            
-        </div>
-            
+  <footer>
+    <p>© 2025 Todos los derechos reservados. Tienda de Colchones.</p>
+    <div class="redes-sociales">
+      <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.twitter.com" target="_blank" rel="noopener">Twitter</a>
+    </div>
+    <p>© 2025 Todos los derechos reservados. Tienda de Colchones.</p>
+  </footer>
 
-        <div class="mapa-ubicacion">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3286.0332631534015!2d-58.44513552381715!3d-34.58211877292151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb582c99c155f%3A0x6b2995135152b759!2sAv.%22Del%20Libertador%22%20%231234!5e0!3m2!1ses!2sar!4v1708519722216!5m2!1ses!2sar" width="600" height="400"></iframe>
-             
-        </div>
-    </main>
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', function () {
+      document.getElementById('menu-nav').classList.toggle('active');
+    });
 
-    <footer>
-        <p>© 2025 Todos los derechos reservados. Tienda de Colchones.</p>
-        <div class="redes-sociales">
-            
-            <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
-            <a href="https://www.instagram.com" target="_blank"rel="noopener">Instagram</a>
-            <a href="https://www.twitter.com" target="_blank" rel="noopener">Twitter</a>
-        </div> 
-        <p>© 2025 Todos los derechos reservados. Tienda de Colchones.</p>
-    </footer>
-    <script>
-        document.getElementById('menu-toggle').addEventListener('click', function () {
-            document.getElementById('menu-nav').classList.toggle('active');
-            });
-    </script>
-    
+    // Validación personalizada JS
+    document.getElementById('form-contacto').addEventListener('submit', function (e) {
+      const nombre = document.getElementById('nombre').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const mensaje = document.getElementById('mensaje').value.trim();
+
+      if (nombre.length < 3 || mensaje.length < 10) {
+        alert("Por favor, completá todos los campos correctamente.");
+        e.preventDefault(); // Evita el envío si falla
+      }
+    });
+  </script>
 </body>
 </html>
