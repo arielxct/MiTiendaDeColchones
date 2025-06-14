@@ -50,16 +50,52 @@
         </select>
 
         <label for="nombre">Nombre del Titular:</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Solo letras, mínimo 3" required pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{3,50}" title="Ingresa un nombre válido (solo letras y espacios, mínimo 3 caracteres)"/>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          placeholder="Solo letras, mínimo 3"
+          required
+          pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{3,50}"
+          title="Ingresa un nombre válido (solo letras y espacios, mínimo 3 caracteres)"
+        />
 
         <label for="numero">Número de Tarjeta:</label>
-        <input type="text" id="numero" name="numero" placeholder="0000-0000-0000-0000" required pattern="\d{4}-\d{4}-\d{4}-\d{4}" maxlength="19" inputmode="numeric" title="Debe tener el formato 0000-0000-0000-0000"/>
+        <input
+          type="text"
+          id="numero"
+          name="numero"
+          placeholder="0000-0000-0000-0000"
+          required
+          pattern="\d{4}-\d{4}-\d{4}-\d{4}"
+          maxlength="19"
+          inputmode="numeric"
+          title="Debe tener el formato 0000-0000-0000-0000"
+        />
 
         <label for="vencimiento">Fecha de Vencimiento:</label>
-        <input type="text" id="vencimiento" name="vencimiento" placeholder="MM/AA" required pattern="^(0[1-9]|1[0-2])\/\d{2}$" title="Formato requerido: MM/AA"/>
+        <input
+          type="text"
+          id="vencimiento"
+          name="vencimiento"
+          placeholder="MM/AA"
+          required
+          pattern="^(0[1-9]|1[0-2])\/\d{2}$"
+          title="Formato requerido: MM/AA"
+        />
 
         <label for="cvv">CVV:</label>
-        <input type="text" id="cvv" name="cvv" placeholder="3 o 4 números" required pattern="\d{3,4}" maxlength="4" inputmode="numeric" title="CVV debe tener 3 o 4 dígitos"/>
+        <input
+          type="text"
+          id="cvv"
+          name="cvv"
+          placeholder="Ingrese 3 o 4 números"
+          required
+          pattern="\d{3,4}"
+          maxlength="4"
+          inputmode="numeric"
+          title="CVV debe tener 3 o 4 dígitos"
+        />
 
         <label for="cuotas">Cuotas:</label>
         <select id="cuotas" name="cuotas" required>
@@ -75,7 +111,7 @@
         <button type="submit">Pagar</button>
       </form>
 
-      <div id="mensaje-pago" style="margin-top: 20px; font-weight: bold;"></div>
+      <div id="mensaje-pago"></div>
     </div>
   </main>
 
@@ -100,8 +136,10 @@
       }
 
       const tarjeta = document.getElementById('tarjeta').value;
+      const nombre = document.getElementById('nombre').value;
       const cuotas = document.getElementById('cuotas').value;
 
+      // Simulación de respuesta de API ficticia
       const respuestaApi = {
         estado: 'aprobado',
         mensaje: `Pagó con ${tarjeta} en ${cuotas} cuotas.`
@@ -109,13 +147,11 @@
 
       const mensajePago = document.getElementById('mensaje-pago');
       if (respuestaApi.estado === 'aprobado') {
-        /* mensajePago.innerText = `✅ PAGO APROBADO. ${respuestaApi.mensaje} ¡Gracias por su compra! ¡Lo esperamos!`;*/
-        mensajePago.innerText = `✅ PAGO APROBADO. ${respuestaApi.mensaje} ¡Gracias por su compra ${nombre}! ¡Lo esperamos!`;
-
+        mensajePago.innerText = `✅ PAGO APROBADO. ${respuestaApi.mensaje} Titular: ${nombre}. ¡Gracias por su compra! ¡Lo esperamos!`;
         localStorage.removeItem('carrito');
         setTimeout(() => {
           window.location.href = '../index.html';
-        }, 3500);
+        }, 2500);
       } else {
         mensajePago.innerText = '❌ Pago Rechazado. Por favor, intente nuevamente.';
       }
@@ -125,3 +161,4 @@
   </script>
 </body>
 </html>
+
