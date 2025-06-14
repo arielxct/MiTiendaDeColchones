@@ -1,121 +1,125 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Pagos</title>
-    <link rel="stylesheet" href="../css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Página de Pagos</title>
+  <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
-    <header>
-        <div class="cabecera">
-            <div class="logo-titulo-carrito">
-                <div class="logo-titulo">
-                    <a href="https://arielxct.github.io/MiTiendaDeColchones/">
-                        <img src="../image/logo.png" alt="Logo de la tienda" class="logo">
-                    </a>
-                </div>
-                <div class="titulo">
-                    <h1>Tu Tienda de Colchones</h1>
-                </div>
-                <div class="carrito-texto">
-                    <a href="./carrito.html">
-                        <img src="../image/carrito-rojo.png" alt="Carrito de compras" class="carrito">
-                    </a>
-                </div>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="https://arielxct.github.io/MiTiendaDeColchones/">Inicio</a></li>
-                    <li><a href="../files/colchones.html">Colchones</a></li>
-                    <li><a href="../files/sommiers.html">Sommiers</a></li>
-                    <li><a href="../files/almohadas.html">Almohadas</a></li>
-                    <li><a href="../files/accesorios.html">Accesorios</a></li>
-                    <li><a href="../files/contactos.html">Contactos</a></li>
-                </ul>
-            </nav>
+  <header>
+    <div class="cabecera">
+      <div class="logo-titulo-carrito">
+        <div class="logo-titulo">
+          <a href="https://arielxct.github.io/MiTiendaDeColchones/">
+            <img src="../image/logo.png" alt="Logo de la tienda" class="logo" />
+          </a>
         </div>
-    </header>
-    <main>
-        <div class="pagos-container">
-            <h2>Realizar Pago</h2>
-            <form class="pagos-form" id="pagos-form">
-                <label for="tarjeta">Tarjeta de Crédito/Débito:</label>
-                <select id="tarjeta" name="tarjeta">
-                    <option value="visa">Visa</option>
-                    <option value="mastercard">Mastercard</option>
-                    <option value="modo">Modo</option>
-                    <option value="mercadoPago">Mercado Pago</option>
-                </select>
-
-                <label for="nombre">Nombre del Titular:</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Solo letras, minimo 3" required pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{3,50}" title="Ingresa un nombre válido (solo letras y espacios, mínimo 3 caracteres)">
-
-                <label for="numero">Número de Tarjeta:</label>
-                <input type="text" id="numero" name="numero" placeholder="nnnn-nnnn-nnnn-nnnn" required pattern="\d{4}-\d{4}-\d{4}-\d{4}"  maxlength="19" inputmode="numeric" title="Debe tener el formato 0000-0000-0000-0000">
-
-                <label for="vencimiento">Fecha de Vencimiento:</label>
-                <input type="text" id="vencimiento" name="vencimiento" placeholder="MM/AA" required pattern="^(0[1-9]|1[0-2])\/\d{2}$" title="Formato requerido: MM/AA">
-
-                <label for="cvv">CVV:</label>
-                <input type="text" id="cvv" name="cvv" placeholder="ingrese3 o 4 numeros" required pattern="\d{3,4}" maxlength="4" inputmode="numeric" title="CVV debe tener 3 o 4 dígitos">
-
-                <label for="cuotas">Cuotas:</label>
-                <select id="cuotas" name="cuotas">
-                    <option value="1">1 Pago</option>
-                    <option value="3">3 Cuotas</option>
-                    <option value="6">6 Cuotas</option>
-                    <option value="12">12 Cuotas</option>
-                    <option value="24">24 Cuotas</option>
-                    <option value="36">36 Cuotas</option>
-                    <option value="48">48 Cuotas</option>
-                </select>
-
-                <button type="submit">Pagar</button>
-            </form>
-
-            <div id="mensaje-pago"></div>
+        <div class="titulo">
+          <h1>Tu Tienda de Colchones</h1>
         </div>
-    </main>
-    <footer>
-        <div class="redes-sociales">
-            <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
-            <a href="https://www.instagram.com" target="_blank"rel="noopener">Instagram</a>
-            <a href="https://www.twitter.com" target="_blank" rel="noopener">Twitter</a>
+        <div class="carrito-texto">
+          <a href="./carrito.html">
+            <img src="../image/carrito-rojo.png" alt="Carrito de compras" class="carrito" />
+          </a>
         </div>
-        <p>© 2025 Todos los derechos reservados. Tienda de Colchones.</p>
-    </footer>
-    <script>
-        document.getElementById('pagos-form').addEventListener('submit', function(event) {
-            event.preventDefault();
+      </div>
+      <nav>
+        <ul>
+          <li><a href="https://arielxct.github.io/MiTiendaDeColchones/">Inicio</a></li>
+          <li><a href="../files/colchones.html">Colchones</a></li>
+          <li><a href="../files/sommiers.html">Sommiers</a></li>
+          <li><a href="../files/almohadas.html">Almohadas</a></li>
+          <li><a href="../files/accesorios.html">Accesorios</a></li>
+          <li><a href="../files/contactos.html">Contactos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-            const tarjeta = document.getElementById('tarjeta').value;
-            const nombre = document.getElementById('nombre').value;
-            const numero = document.getElementById('numero').value;
-            const vencimiento = document.getElementById('vencimiento').value;
-            const cvv = document.getElementById('cvv').value;
-            const cuotas = document.getElementById('cuotas').value;
+  <main>
+    <div class="pagos-container">
+      <h2>Realizar Pago</h2>
+      <form class="pagos-form" id="pagos-form">
+        <label for="tarjeta">Tarjeta de Crédito/Débito:</label>
+        <select id="tarjeta" name="tarjeta" required>
+          <option value="visa">Visa</option>
+          <option value="mastercard">Mastercard</option>
+          <option value="modo">Modo</option>
+          <option value="mercadoPago">Mercado Pago</option>
+        </select>
 
-            // Simulación de API ficticia
-            const respuestaApi = {
-                estado: 'aprobado',
-                mensaje: ` Pagó con ${tarjeta} en ${cuotas} cuotas.`
-            };
+        <label for="nombre">Nombre del Titular:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Solo letras, mínimo 3" required pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{3,50}" title="Ingresa un nombre válido (solo letras y espacios, mínimo 3 caracteres)"/>
 
-            const mensajePago = document.getElementById('mensaje-pago');
-            if (respuestaApi.estado === 'aprobado') {
-                mensajePago.innerText = `PAGO APROBADO. ${mensaje} ¡Gracias por su compra! ¡Lo esperamos!`;
-                 localStorage.removeItem('carrito');
-                setTimeout(() => {
-                    window.location.href='../index.html';
-                }, 2500);
+        <label for="numero">Número de Tarjeta:</label>
+        <input type="text" id="numero" name="numero" placeholder="0000-0000-0000-0000" required pattern="\d{4}-\d{4}-\d{4}-\d{4}" maxlength="19" inputmode="numeric" title="Debe tener el formato 0000-0000-0000-0000"/>
 
-            } else {
-                mensajePago.innerText = 'Pago Rechazado. Por favor, intente nuevamente.';
-            }
+        <label for="vencimiento">Fecha de Vencimiento:</label>
+        <input type="text" id="vencimiento" name="vencimiento" placeholder="MM/AA" required pattern="^(0[1-9]|1[0-2])\/\d{2}$" title="Formato requerido: MM/AA"/>
 
-            document.getElementById('pagos-form').reset();
-        });
-    </script>
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" name="cvv" placeholder="3 o 4 números" required pattern="\d{3,4}" maxlength="4" inputmode="numeric" title="CVV debe tener 3 o 4 dígitos"/>
+
+        <label for="cuotas">Cuotas:</label>
+        <select id="cuotas" name="cuotas" required>
+          <option value="1">1 Pago</option>
+          <option value="3">3 Cuotas</option>
+          <option value="6">6 Cuotas</option>
+          <option value="12">12 Cuotas</option>
+          <option value="24">24 Cuotas</option>
+          <option value="36">36 Cuotas</option>
+          <option value="48">48 Cuotas</option>
+        </select>
+
+        <button type="submit">Pagar</button>
+      </form>
+
+      <div id="mensaje-pago" style="margin-top: 20px; font-weight: bold;"></div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="redes-sociales">
+      <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.twitter.com" target="_blank" rel="noopener">Twitter</a>
+    </div>
+    <p>© 2025 Todos los derechos reservados. Tienda de Colchones.</p>
+  </footer>
+
+  <script>
+    document.getElementById('pagos-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const form = event.target;
+
+      if (!form.checkValidity()) {
+        alert("Por favor, completá todos los campos correctamente.");
+        return;
+      }
+
+      const tarjeta = document.getElementById('tarjeta').value;
+      const cuotas = document.getElementById('cuotas').value;
+
+      const respuestaApi = {
+        estado: 'aprobado',
+        mensaje: `Pagó con ${tarjeta} en ${cuotas} cuotas.`
+      };
+
+      const mensajePago = document.getElementById('mensaje-pago');
+      if (respuestaApi.estado === 'aprobado') {
+        mensajePago.innerText = `✅ PAGO APROBADO. ${respuestaApi.mensaje} ¡Gracias por su compra! ¡Lo esperamos!`;
+        localStorage.removeItem('carrito');
+        setTimeout(() => {
+          window.location.href = '../index.html';
+        }, 2500);
+      } else {
+        mensajePago.innerText = '❌ Pago Rechazado. Por favor, intente nuevamente.';
+      }
+
+      form.reset();
+    });
+  </script>
 </body>
 </html>
