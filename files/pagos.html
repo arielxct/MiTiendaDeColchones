@@ -124,41 +124,45 @@
     <p>© 2025 Todos los derechos reservados. Tienda de Colchones.</p>
   </footer>
 
-  <script>
-    document.getElementById('pagos-form').addEventListener('submit', function (event) {
-      event.preventDefault();
+ <script>
+  document.getElementById('pagos-form').addEventListener('submit', function (event) {
+    event.preventDefault();
 
-      const form = event.target;
+    const form = event.target;
 
-      if (!form.checkValidity()) {
-        alert("Por favor, completá todos los campos correctamente.");
-        return;
-      }
+    if (!form.checkValidity()) {
+      alert("Por favor, completá todos los campos correctamente.");
+      return;
+    }
 
-      const tarjeta = document.getElementById('tarjeta').value;
-      const nombre = document.getElementById('nombre').value;
-      const cuotas = document.getElementById('cuotas').value;
+    // Aseguramos obtener el valor del input directamente
+    const tarjeta = document.getElementById('tarjeta').value;
+    const nombre = document.getElementById('nombre').value.trim();
+    const cuotas = document.getElementById('cuotas').value;
 
-      // Simulación de respuesta de API ficticia
-      const respuestaApi = {
-        estado: 'aprobado',
-        mensaje: `Pagó con ${tarjeta} en ${cuotas} cuotas.`
-      };
+    // Simulación de respuesta de API ficticia
+    const respuestaApi = {
+      estado: 'aprobado',
+      mensaje: `Pagó con ${tarjeta} en ${cuotas} cuotas.`
+    };
 
-      const mensajePago = document.getElementById('mensaje-pago');
-      if (respuestaApi.estado === 'aprobado') {
-        mensajePago.innerText = `✅ PAGO APROBADO. ${respuestaApi.mensaje} Titular: ${nombre}. ¡Gracias por su compra! ¡Lo esperamos!`;
-        localStorage.removeItem('carrito');
-        setTimeout(() => {
-          window.location.href = '../index.html';
-        }, 2500);
-      } else {
-        mensajePago.innerText = '❌ Pago Rechazado. Por favor, intente nuevamente.';
-      }
+    const mensajePago = document.getElementById('mensaje-pago');
 
-      form.reset();
-    });
-  </script>
+    if (respuestaApi.estado === 'aprobado') {
+      mensajePago.innerText = `✅ PAGO APROBADO. ${respuestaApi.mensaje} Titular: ${nombre}. ¡Gracias por su compra! ¡Lo esperamos!`;
+      localStorage.removeItem('carrito');
+
+      setTimeout(() => {
+        window.location.href = '../index.html';
+      }, 2500);
+    } else {
+      mensajePago.innerText = '❌ Pago Rechazado. Por favor, intente nuevamente.';
+    }
+
+    form.reset();
+  });
+</script>
+
 </body>
 </html>
 
