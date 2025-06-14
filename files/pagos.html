@@ -149,7 +149,7 @@
     const mensajePago = document.getElementById('mensaje-pago');
 
     if (respuestaApi.estado === 'aprobado') {
-      mensajePago.innerText = `✅ PAGO APROBADO. ${respuestaApi.mensaje} Titular: ${nombre}. ¡Gracias por su compra! ¡Lo esperamos!`;
+      mensajePago.innerText = `✅ PAGO APROBADO. ${respuestaApi.mensaje}  ¡Gracias por su compra ${nombre}! Enviaremos su factura al email registrado ¡Lo esperamos nuevamente! ✅`;
       localStorage.removeItem('carrito');
 
       setTimeout(() => {
