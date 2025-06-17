@@ -105,6 +105,19 @@ nav ul li a {
 nav ul li a:hover {
     background-color: #00509e;
 }
+/*-------------------REgistro de usuarios--------------------------*/
+
+.boton-registro {
+  display: inline-block;
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #c0392b;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
 /* --------------- Main ------------------ */
 main {
     padding: 20px;
