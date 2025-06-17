@@ -5,14 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Administrar Usuarios</title>
   <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .login-admin, .abm-container {
+      padding: 1rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    .login-admin input, .login-admin button {
+      display: block;
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+    }
+    .abm-container {
+      display: none;
+    }
+    .tabla-usuarios input {
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1>Administración de Usuarios</h1>
   </header>
 
-  <main class="abm-container">
-    <table border="1" id="tabla-usuarios">
+  <!-- Paso previo: Login admin -->
+  <section class="login-admin" id="login-admin">
+    <h2>Acceso solo para administradores</h2>
+    <input type="email" id="admin-email" placeholder="Email del administrador" required />
+    <input type="password" id="admin-pass" placeholder="Contraseña" required />
+    <button onclick="verificarAcceso()">Ingresar</button>
+    <p id="error-msg" style="color: red;"></p>
+  </section>
+
+  <!-- ABM -->
+  <main class="abm-container" id="abm-container">
+    <table border="1" id="tabla-usuarios" class="tabla-usuarios">
       <thead>
         <tr>
           <th>Nombre</th>
@@ -22,7 +51,7 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Usuarios cargados dinámicamente -->
+        <!-- Cargado dinámicamente -->
       </tbody>
     </table>
   </main>
@@ -32,5 +61,28 @@
   </footer>
 
   <script src="../js/abm_usuarios.js"></script>
+  <script>
+    function verificarAcceso() {
+      const email = document.getElementById('admin-email').value.trim();
+      const pass = document.getElementById('admin-pass').value.trim();
+      const error = document.getElementById('error-msg');
+
+      const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+      const admin = usuarios.find(user =>
+        user.nombre === 'admin' &&
+        user.email === 'admin@tiendadecolchones.com.ar' &&
+        user.password === 'admin1234'
+      );
+
+      if (admin && email === admin.email && pass === admin.password) {
+        document.getElementById('login-admin').style.display = 'none';
+        document.getElementById('abm-container').style.display = 'block';
+        cargarUsuarios(); // de abm_usuarios.js
+      } else {
+        error.textContent = "⚠️ Acceso denegado. Credenciales inválidas.";
+      }
+    }
+  </script>
 </body>
 </html>
