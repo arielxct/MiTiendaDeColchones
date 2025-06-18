@@ -6,62 +6,67 @@
   <title>Registro de Usuario</title>
   <link rel="stylesheet" href="../css/style.css" />
    <style>
-    /*-- Estilos específicos para la página de ABM de usuarios */
-    /*--
-    .login-admin, .abm-container {
+  .registro-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
+
+  #form-registro {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    background-color: #f8f8f8;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  #form-registro label {
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+  }
+
+  #form-registro input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  #form-registro button {
+    margin-top: 1.5rem;
+    padding: 0.7rem;
+    background-color: #c62828;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  #form-registro button:hover {
+    background-color: #a32020;
+  }
+
+  #mensaje {
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: bold;
+    color: green;
+  }
+
+  @media (max-width: 480px) {
+    #form-registro {
       padding: 1rem;
-      max-width: 450px;
-      margin: auto;
     }
-    .login-admin input, .login-admin button {
-      display: block;
-      width: 80%;
-      margin: 0.5rem 0;
-      padding: 0.5rem;
-    }
-    .abm-container {
-      display: none;
-      
-    }
-    .tabla-usuarios input {
-      width: 85%;
-    }
-      */
-      .login-admin {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  margin: auto;
-  max-width: 400px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+  }
+</style>
 
-.login-admin input,
-.login-admin button {
-  width: 100%;
-  padding: 0.7rem;
-  margin: 0.5rem 0;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.login-admin button {
-  background-color: #c62828;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.login-admin button:hover {
-  background-color: #a32020;
-}
-
-  </style>
 </head>
 <body>
   <header>
