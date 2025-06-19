@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro de Usuario</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .conversor-moneda {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.conversor-moneda h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #b40000; /* Combinando con el rojo del carrito */
+}
+
+.conversor-moneda label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.conversor-moneda input,
+.conversor-moneda select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.conversor-moneda button {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #b40000;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.conversor-moneda button:hover {
+  background-color: #8a0000;
+}
+
+.resultado {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #2e7d32; /* Verde para destacar el resultado */
+  font-weight: bold;
+}
+  </style>
+   
+
+</head>
+<body>
+  <header>
+    <div class="cabecera">
+        <div class="logo-titulo-carrito">
+           <div class="logo-titulo">
+              <a href="https://arielxct.github.io/MiTiendaDeColchones/">
+               <!--<a href="index.html">-->
+       
+              <img src="../image/logo.png" alt="Logo de la tienda" class="logo">
+              </a>
+        
+        <!-- agregado 17/9/25*****************-->
+         <a href="../files/usuarios.html" class="boton-registro">Registrarse</a>
+
+      </div>
+      <div class="titulo">
+        <h1>Tu Tienda de Colchones</h1>
+      </div>
+      <div class="carrito-texto">
+        <a href="../files/carrito.html">
+          <img src="../image/carrito-rojo.png" alt="Carrito de compras" class="carrito">
+        </a>
+      </div>
+      <!-- Menú Hamburguesa -->
+      <button class="menu-toggle" id="menu-toggle">&#9776;</button>
+    </div>
+
+    <!-- Menú de navegación -->
+    <nav id="menu-nav" class="menu-nav">
+      <ul>
+        
+         <li><a href="https://arielxct.github.io/MiTiendaDeColchones/">Inicio</a></li>
+        <li><a href="./colchones.html">Colchones</a></li>
+        <li><a href="./sommiers.html">Sommiers</a></li>
+        <li><a href="../files/almohadas.html">Almohadas</a></li>
+        <li><a href="../files/accesorios.html">Accesorios</a></li>
+        <li><a href="../files/contactos.html">Contactos</a></li>
+        <!-- agegado 17/6/25 -->
+         <li><a href="../files/abm_usuarios.html" class="boton-registro">Administrar Usuarios</a></li>
+
+      </ul>
+    </nav>
+  </div>
+    <h1>Conversor de Moneda</h1>
+  </header>
+
+  <main>
+  <section class="conversor-moneda">
+    <h2>Convertí tu moneda</h2>
+    <form id="form-conversor">
+      <label for="monto">Monto:</label>
+      <input type="number" id="monto" required />
+
+      <label for="monedaOrigen">Moneda origen:</label>
+      <select id="monedaOrigen">
+        <option value="USD">USD - Dólar</option>
+        <option value="ARS">ARS - Peso argentino</option>
+        <option value="BRL">BRL - Real brasileño</option>
+        <option value="COP">COP - Peso colombiano</option>
+      </select>
+
+      <label for="monedaDestino">Moneda destino:</label>
+      <select id="monedaDestino">
+        <option value="ARS">ARS - Peso argentino</option>
+        <option value="USD">USD - Dólar</option>
+        <option value="BRL">BRL - Real brasileño</option>
+        <option value="COP">COP - Peso colombiano</option>
+      </select>
+
+      <button type="submit">Convertir</button>
+    </form>
+
+    <div id="resultado" class="resultado"></div>
+  </section>
+</main>
+
+  <footer>
+    <div class="redes-sociales">
+            <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://www.instagram.com" target="_blank"rel="noopener">Instagram</a>
+            <a href="https://www.twitter.com" target="_blank" rel="noopener">Twitter</a>
+        </div>
+        <p>© 2025 Todos los derechos reservados. Tienda de Colchones.</p>
+    
+  </footer>
+
+  
+  <script>
+        /******************* Menu hamburguesa *******************/
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+        document.getElementById('menu-nav').classList.toggle('active');
+            });
+
+
+        /******************* Conversor de Moneda *******************/
+          
+  const API_KEY = "bf1f4e7deb29cf32fa98612d";
+  const API_URL = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/`;
+
+  document.getElementById("form-conversor").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const monto = parseFloat(document.getElementById("monto").value);
+    const monedaOrigen = document.getElementById("monedaOrigen").value;
+    const monedaDestino = document.getElementById("monedaDestino").value;
+
+    if (isNaN(monto)) {
+      document.getElementById("resultado").innerText = "Por favor, ingrese un monto válido.";
+      return;
+    }
+
+    try {
+      const res = await fetch(API_URL + monedaOrigen);
+      const data = await res.json();
+      const tasa = data.conversion_rates[monedaDestino];
+      const resultado = monto * tasa;
+
+      document.getElementById("resultado").innerText =
+        `${monto.toFixed(2)} ${monedaOrigen} = ${resultado.toFixed(2)} ${monedaDestino}`;
+    } catch (error) {
+      document.getElementById("resultado").innerText = "Error al obtener la conversión.";
+    }
+  });
+
+
+        /*-----------------------------------------*/
+  </script>
+  
+</body>
+</html>
