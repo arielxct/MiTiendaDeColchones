@@ -169,12 +169,15 @@
       usuarios.forEach((usuario, index) => {
         const tr = document.createElement("tr");
 
-        tr.innerHTML = `
-          <td><input type="text" value="${usuario.nombre}" onchange="actualizarCampo(${index}, 'nombre', this.value)"></td>
-          <td><input type="email" value="${usuario.email}" onchange="actualizarCampo(${index}, 'email', this.value)"></td>
-          <td><input type="password" value="${usuario.password}" onchange="actualizarCampo(${index}, 'password', this.value)"></td>
-          <td><button onclick="eliminarUsuario(${index})">Eliminar</button></td>
-        `;
+       <tr>
+         <td><input type="text" value="${usuario.nombre}" id="nombre-${index}"/></td>
+        <td><input type="email" value="${usuario.email}" id="email-${index}"/></td>
+        <td><input type="password" value="${usuario.password}" id="password-${index}"/></td>
+        <td>
+        <button onclick="guardarCambios(${index})">Guardar</button>
+        <button onclick="eliminarUsuario(${index})">Eliminar</button>
+  </td>
+</tr>
 
         tbody.appendChild(tr);
       });
@@ -194,6 +197,20 @@
         cargarUsuarios();
       }
     }
+    /*------------------------------------*/
+    function guardarCambios(index) {
+  const nombre = document.getElementById(`nombre-${index}`).value;
+  const email = document.getElementById(`email-${index}`).value;
+  const password = document.getElementById(`password-${index}`).value;
+
+  const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+  usuarios[index] = { nombre, email, password };
+  localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+  alert("✅ Cambios guardados correctamente.");
+}
+
+    /*--------------------------------------*/
 
     document.getElementById('menu-toggle')?.addEventListener('click', () => {
       document.getElementById('menu-nav')?.classList.toggle('active');
