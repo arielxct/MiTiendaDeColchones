@@ -2,65 +2,132 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Administrar Usuarios</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administrar Usuarios - Tu Tienda de Colchones</title>
   <link rel="stylesheet" href="../css/style.css" />
   <style>
+    /* Estilos generales para los contenedores de login y ABM */
     .login-admin, .abm-container {
       padding: 1rem;
       max-width: 600px;
-      margin: auto;
+      margin: 2rem auto; /* Añadido margen superior e inferior para separación */
+      border: 1px solid #ddd; /* Añadido borde para visualización */
+      border-radius: 8px; /* Bordes redondeados */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
     }
 
+    /* Estilos para los inputs y botones del formulario de login */
     .login-admin input, .login-admin button {
       display: block;
       width: 100%;
-      margin: 0.5rem 0;
-      padding: 0.5rem;
+      margin: 0.75rem 0; /* Margen ligeramente aumentado */
+      padding: 0.75rem; /* Padding aumentado para mejor clicabilidad */
       font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box; /* Incluye padding y borde en el ancho total */
     }
 
+    .login-admin button {
+      background-color: #007bff; /* Color primario para el botón */
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease; /* Transición suave al pasar el mouse */
+    }
+
+    .login-admin button:hover {
+      background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+    }
+
+    /* Ocultar el contenedor ABM por defecto */
     .abm-container {
       display: none;
     }
 
+    /* Estilos para la tabla de usuarios */
     .tabla-usuarios {
       width: 100%;
       border-collapse: collapse;
+      margin-top: 1.5rem; /* Margen superior para separación de elementos */
     }
 
     .tabla-usuarios th, .tabla-usuarios td {
-      padding: 0.5rem;
+      padding: 0.75rem; /* Padding aumentado para mayor espacio */
       text-align: left;
-      border: 1px solid #ccc;
+      border: 1px solid #e0e0e0; /* Color de borde más suave */
+    }
+
+    .tabla-usuarios th {
+      background-color: #f2f2f2; /* Fondo para encabezados */
+      font-weight: bold;
     }
 
     .tabla-usuarios input {
-      width: 95%;
-      padding: 0.3rem;
+      width: 98%; /* Ajustado para evitar desbordamiento */
+      padding: 0.4rem;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
     }
 
-    @media (max-width: 600px) {
+    .tabla-usuarios button {
+      padding: 0.4rem 0.8rem;
+      margin-right: 0.3rem; /* Espacio entre botones */
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .tabla-usuarios button:first-of-type { /* Botón Guardar */
+      background-color: #28a745; /* Verde para guardar */
+      color: white;
+    }
+
+    .tabla-usuarios button:first-of-type:hover {
+      background-color: #218838;
+    }
+
+    .tabla-usuarios button:last-of-type { /* Botón Eliminar */
+      background-color: #dc3545; /* Rojo para eliminar */
+      color: white;
+    }
+
+    .tabla-usuarios button:last-of-type:hover {
+      background-color: #c82333;
+    }
+
+    /* Media Queries para responsividad de la tabla */
+    @media (max-width: 768px) { /* Ajustado el breakpoint para mayor compatibilidad */
       .tabla-usuarios, .tabla-usuarios thead, .tabla-usuarios tbody, .tabla-usuarios th, .tabla-usuarios td, .tabla-usuarios tr {
         display: block;
       }
-      .tabla-usuarios th {
-        display: none;
+      .tabla-usuarios thead {
+        display: none; /* Oculta el encabezado original en móviles */
+      }
+      .tabla-usuarios tr {
+        margin-bottom: 1rem; /* Espacio entre filas en móviles */
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 0.5rem;
       }
       .tabla-usuarios td {
         position: relative;
-        padding-left: 50%;
-        margin-bottom: 10px;
+        padding-left: 55%; /* Espacio para el pseudo-elemento */
+        text-align: right; /* Texto alineado a la derecha en el contenido real */
+        margin-bottom: 5px; /* Espacio entre celdas */
+        border: none; /* Eliminar borde de celdas individuales */
       }
       .tabla-usuarios td::before {
+        content: attr(data-label); /* Usa el atributo data-label */
         position: absolute;
         left: 10px;
+        width: 45%; /* Ancho para la etiqueta del pseudo-elemento */
+        text-align: left; /* Etiqueta alineada a la izquierda */
         font-weight: bold;
+        color: #555;
       }
-      .tabla-usuarios td:nth-of-type(1)::before { content: "Nombre"; }
-      .tabla-usuarios td:nth-of-type(2)::before { content: "Email"; }
-      .tabla-usuarios td:nth-of-type(3)::before { content: "Contraseña"; }
-      .tabla-usuarios td:nth-of-type(4)::before { content: "Acciones"; }
     }
   </style>
 </head>
@@ -69,20 +136,19 @@
     <div class="cabecera">
       <div class="logo-titulo-carrito">
         <div class="logo-titulo">
-          <a href="https://arielxct.github.io/MiTiendaDeColchones/">
-            <img src="../image/logo.png" alt="Logo de la tienda" class="logo">
+          <a href="https://arielxct.github.io/MiTiendaDeColchones/" aria-label="Volver a la página de inicio">
+            <img src="../image/logo.png" alt="Logo de la tienda de colchones" class="logo">
           </a>
-          <a href="../files/usuarios.html" class="boton-registro">Registrarse</a>
-        </div>
+          </div>
         <div class="titulo">
           <h1>Tu Tienda de Colchones</h1>
         </div>
         <div class="carrito-texto">
-          <a href="../files/carrito.html">
-            <img src="../image/carrito-rojo.png" alt="Carrito de compras" class="carrito">
+          <a href="../files/carrito.html" aria-label="Ir al carrito de compras">
+            <img src="../image/carrito-rojo.png" alt="Icono de carrito de compras" class="carrito">
           </a>
         </div>
-        <button class="menu-toggle" id="menu-toggle">&#9776;</button>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación">&#9776;</button>
       </div>
       <nav id="menu-nav" class="menu-nav">
         <ul>
@@ -93,22 +159,25 @@
           <li><a href="../files/accesorios.html">Accesorios</a></li>
           <li><a href="../files/contactos.html">Contactos</a></li>
           <li><a href="../files/conversor-moneda.html">Conversor Moneda</a></li>
-          <li><a href="../files/abm_usuarios.html" class="boton-registro">Administrar Usuarios</a></li>
+          <li><a href="../files/abm_usuarios.html" class="boton-registro" aria-current="page">Administrar Usuarios</a></li>
         </ul>
       </nav>
     </div>
-    <h1>Administración de Usuarios</h1>
+    <h2>Administración de Usuarios</h2>
   </header>
 
   <section class="login-admin" id="login-admin">
     <h2>Acceso solo para administradores</h2>
-    <input type="email" id="admin-email" placeholder="Email del administrador" required />
-    <input type="password" id="admin-pass" placeholder="Contraseña" required />
-    <button onclick="verificarAcceso()">Ingresar</button>
-    <p id="error-msg" style="color: red;"></p>
+    <form id="admin-login-form"> <label for="admin-email" class="sr-only">Email del administrador</label>
+      <input type="email" id="admin-email" placeholder="Email del administrador" required autocomplete="username" />
+      <label for="admin-pass" class="sr-only">Contraseña</label>
+      <input type="password" id="admin-pass" placeholder="Contraseña" required autocomplete="current-password" />
+      <button type="submit">Ingresar</button> </form>
+    <p id="error-msg" style="color: red; text-align: center; margin-top: 1rem;"></p>
   </section>
 
   <main class="abm-container" id="abm-container">
+    <h2 style="text-align: center; margin-bottom: 1.5rem;">Gestión de Usuarios</h2>
     <table id="tabla-usuarios" class="tabla-usuarios">
       <thead>
         <tr>
@@ -118,80 +187,215 @@
           <th>Acciones</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
+        </tbody>
     </table>
   </main>
 
   <footer>
-    <p>© 2025 Tienda de Colchones.</p>
+    <p>© 2025 Tu Tienda de Colchones. Todos los derechos reservados.</p>
   </footer>
 
   <script>
+    // Define el usuario administrador fijo para el acceso
+    const ADMIN_USER = {
+      nombre: 'admin',
+      email: 'admin@tiendadecolchones.com.ar',
+      password: 'admin1234'
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Manejar el envío del formulario de login
+      const loginForm = document.getElementById('admin-login-form');
+      if (loginForm) {
+        loginForm.addEventListener('submit', function(event) {
+          event.preventDefault(); // Evita el envío tradicional del formulario
+          verificarAcceso();
+        });
+      }
+
+      // Inicializar el menú de navegación
+      const menuToggle = document.getElementById('menu-toggle');
+      const menuNav = document.getElementById('menu-nav');
+      if (menuToggle && menuNav) {
+        menuToggle.addEventListener('click', () => {
+          menuNav.classList.toggle('active');
+        });
+      }
+
+      // Cargar usuarios al inicio si el administrador ya está logueado (por ejemplo, si se refresca la página)
+      // Aunque para una mayor seguridad, deberías manejar sesiones o tokens.
+      // Por ahora, nos aseguramos de que el contenedor ABM no se muestre si no hay acceso.
+      // La visibilidad se controla con verificarAcceso()
+    });
+
+    /**
+     * Verifica las credenciales del administrador y muestra la interfaz ABM.
+     */
     function verificarAcceso() {
-      const email = document.getElementById('admin-email').value.trim();
-      const pass = document.getElementById('admin-pass').value.trim();
-      const error = document.getElementById('error-msg');
-      const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+      const emailInput = document.getElementById('admin-email');
+      const passInput = document.getElementById('admin-pass');
+      const errorMsg = document.getElementById('error-msg');
+      const loginAdminSection = document.getElementById('login-admin');
+      const abmContainer = document.getElementById('abm-container');
 
-      const admin = usuarios.find(user =>
-        user.nombre === 'admin' &&
-        user.email === 'admin@tiendadecolchones.com.ar' &&
-        user.password === 'admin1234'
-      );
+      const email = emailInput.value.trim();
+      const pass = passInput.value.trim();
 
-      if (admin && email === admin.email && pass === admin.password) {
-        document.getElementById('login-admin').style.display = 'none';
-        document.getElementById('abm-container').style.display = 'block';
-        cargarUsuarios();
+      if (email === ADMIN_USER.email && pass === ADMIN_USER.password) {
+        loginAdminSection.style.display = 'none';
+        abmContainer.style.display = 'block';
+        cargarUsuarios(); // Carga los usuarios una vez que el admin ha iniciado sesión
+        errorMsg.textContent = ''; // Limpiar mensaje de error
       } else {
-        error.textContent = "⚠️ Acceso denegado. Credenciales inválidas.";
+        errorMsg.textContent = "⚠️ Acceso denegado. Credenciales inválidas.";
+        // Limpiar campos de contraseña por seguridad
+        passInput.value = '';
+        emailInput.focus(); // Enfocar el email para reintentar
       }
     }
 
+    /**
+     * Carga y muestra la lista de usuarios desde localStorage en la tabla.
+     */
     function cargarUsuarios() {
       const tbody = document.querySelector("#tabla-usuarios tbody");
-      tbody.innerHTML = "";
+      tbody.innerHTML = ""; // Limpia la tabla antes de cargar
+      // Asegurarse de que el usuario 'admin' exista, si no, lo agrega
+      inicializarUsuariosAdmin();
       const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
 
-      usuarios.forEach((usuario, index) => {
+      // Filtra el usuario 'admin' para no mostrarlo en la tabla si no es deseado
+      const usuariosFiltrados = usuarios.filter(user => user.email !== ADMIN_USER.email);
+
+      if (usuariosFiltrados.length === 0) {
         const tr = document.createElement("tr");
+        tr.innerHTML = `<td colspan="4" style="text-align: center;">No hay usuarios registrados (excepto el admin).</td>`;
+        tbody.appendChild(tr);
+        return;
+      }
+
+      usuariosFiltrados.forEach((usuario, index) => {
+        // Asigna un ID único a cada usuario para mapear de forma más robusta
+        // Esto es importante si el orden puede cambiar o si se añaden/eliminan usuarios
+        // de forma no secuencial.
+        const userId = usuario.id || `user-${Date.now()}-${index}`; // Genera un ID si no existe
+        usuario.id = userId; // Guarda el ID en el objeto usuario
+        // Actualiza localStorage para persistir el ID si es nuevo
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+        const tr = document.createElement("tr");
+        // Añadir data-label para responsividad móvil
         tr.innerHTML = `
-          <td><input type="text" value="${usuario.nombre}" id="nombre-${index}"></td>
-          <td><input type="email" value="${usuario.email}" id="email-${index}"></td>
-          <td><input type="password" value="${usuario.password}" id="password-${index}"></td>
-          <td>
-            <button onclick="guardarCambios(${index})">Guardar</button>
-            <button onclick="eliminarUsuario(${index})">Eliminar</button>
+          <td data-label="Nombre"><input type="text" value="${usuario.nombre || ''}" id="nombre-${userId}" required></td>
+          <td data-label="Email"><input type="email" value="${usuario.email || ''}" id="email-${userId}" required></td>
+          <td data-label="Contraseña"><input type="password" value="${usuario.password || ''}" id="password-${userId}" required></td>
+          <td data-label="Acciones">
+            <button onclick="guardarCambios('${userId}')">Guardar</button>
+            <button onclick="eliminarUsuario('${userId}')">Eliminar</button>
           </td>
         `;
         tbody.appendChild(tr);
       });
     }
 
-    function guardarCambios(index) {
-      const nombre = document.getElementById(`nombre-${index}`).value;
-      const email = document.getElementById(`email-${index}`).value;
-      const password = document.getElementById(`password-${index}`).value;
+    /**
+     * Inicializa el usuario 'admin' en localStorage si no existe.
+     * Esto asegura que siempre haya un usuario con el que loguearse.
+     */
+    function inicializarUsuariosAdmin() {
+      let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+      const adminExists = usuarios.some(user => user.email === ADMIN_USER.email);
 
-      const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-      usuarios[index] = { nombre, email, password };
-      localStorage.setItem('usuarios', JSON.stringify(usuarios));
-
-      alert("✅ Cambios guardados correctamente.");
-    }
-
-    function eliminarUsuario(index) {
-      const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-      if (confirm("¿Estás seguro de eliminar este usuario?")) {
-        usuarios.splice(index, 1);
+      if (!adminExists) {
+        // Añade el admin con un ID fijo para evitar duplicados en cada carga
+        usuarios.push({ ...ADMIN_USER, id: 'admin-fixed-id' });
         localStorage.setItem('usuarios', JSON.stringify(usuarios));
-        cargarUsuarios();
       }
     }
 
-    document.getElementById('menu-toggle')?.addEventListener('click', () => {
-      document.getElementById('menu-nav')?.classList.toggle('active');
-    });
+
+    /**
+     * Guarda los cambios de un usuario específico en localStorage.
+     * @param {string} userId - El ID único del usuario a guardar.
+     */
+    function guardarCambios(userId) {
+      const nombreInput = document.getElementById(`nombre-${userId}`);
+      const emailInput = document.getElementById(`email-${userId}`);
+      const passwordInput = document.getElementById(`password-${userId}`);
+
+      if (!nombreInput.value || !emailInput.value || !passwordInput.value) {
+        alert("Todos los campos son obligatorios.");
+        return;
+      }
+      if (!validateEmail(emailInput.value)) {
+        alert("Por favor, introduce un email válido.");
+        return;
+      }
+
+      let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+      const userIndex = usuarios.findIndex(u => u.id === userId);
+
+      if (userIndex !== -1) {
+        // Verificar si el email ya existe en otro usuario (excluyendo el actual)
+        const emailExists = usuarios.some((user, idx) =>
+          idx !== userIndex && user.email === emailInput.value
+        );
+
+        if (emailExists) {
+          alert("El email ya está registrado para otro usuario.");
+          return;
+        }
+
+        usuarios[userIndex].nombre = nombreInput.value;
+        usuarios[userIndex].email = emailInput.value;
+        usuarios[userIndex].password = passwordInput.value; // En una app real, esto debería ser hasheado
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+        alert("✅ Cambios guardados correctamente.");
+        cargarUsuarios(); // Recargar la tabla para reflejar posibles ordenamientos o actualizaciones
+      } else {
+        alert("Error: Usuario no encontrado para guardar cambios.");
+      }
+    }
+
+    /**
+     * Elimina un usuario específico de localStorage.
+     * @param {string} userId - El ID único del usuario a eliminar.
+     */
+    function eliminarUsuario(userId) {
+      let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+      const userIndex = usuarios.findIndex(u => u.id === userId);
+
+      // No permitir eliminar al usuario administrador fijo
+      if (userId === ADMIN_USER.id) {
+          alert("🚫 No puedes eliminar al usuario administrador predefinido.");
+          return;
+      }
+
+      if (userIndex !== -1) {
+        if (confirm("¿Estás seguro de eliminar este usuario?")) {
+          usuarios.splice(userIndex, 1);
+          localStorage.setItem('usuarios', JSON.stringify(usuarios));
+          alert("Usuario eliminado correctamente.");
+          cargarUsuarios(); // Recarga la tabla
+        }
+      } else {
+        alert("Error: Usuario no encontrado para eliminar.");
+      }
+    }
+
+    /**
+     * Valida el formato de un email.
+     * @param {string} email - El email a validar.
+     * @returns {boolean} - True si el email es válido, false en caso contrario.
+     */
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(String(email).toLowerCase());
+    }
+
+    // Asegurarse de que el usuario administrador esté inicializado al cargar la página
+    inicializarUsuariosAdmin();
   </script>
 </body>
 </html>
