@@ -20,23 +20,23 @@
     .login-admin input, .login-admin button {
       display: block;
       width: 100%;
-      margin: 0.75rem 0; /* Margen ligeramente aumentado */
-      padding: 0.75rem; /* Padding aumentado para mejor clicabilidad */
+      margin: 0.75rem 0; 
+      padding: 0.75rem; 
       font-size: 1rem;
       border: 1px solid #ccc;
       border-radius: 4px;
-      box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+      box-sizing: border-box; 
     }
 
     .login-admin button {
-      background-color: #007bff; /* Color primario para el botón */
+      background-color: #007bff; 
       color: white;
       cursor: pointer;
-      transition: background-color 0.3s ease; /* Transición suave al pasar el mouse */
+      transition: background-color 0.3s ease; 
     }
 
     .login-admin button:hover {
-      background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+      background-color: #0056b3; 
     }
 
     /* Ocultar el contenedor ABM por defecto */
@@ -48,22 +48,22 @@
     .tabla-usuarios {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 1.5rem; /* Margen superior para separación de elementos */
+      margin-top: 1.5rem; 
     }
 
     .tabla-usuarios th, .tabla-usuarios td {
-      padding: 0.75rem; /* Padding aumentado para mayor espacio */
+      padding: 0.75rem; 
       text-align: left;
-      border: 1px solid #e0e0e0; /* Color de borde más suave */
+      border: 1px solid #e0e0e0; 
     }
 
     .tabla-usuarios th {
-      background-color: #f2f2f2; /* Fondo para encabezados */
+      background-color: #f2f2f2; 
       font-weight: bold;
     }
 
     .tabla-usuarios input {
-      width: 98%; /* Ajustado para evitar desbordamiento */
+      width: 98%; 
       padding: 0.4rem;
       border: 1px solid #ccc;
       border-radius: 3px;
@@ -72,7 +72,7 @@
 
     .tabla-usuarios button {
       padding: 0.4rem 0.8rem;
-      margin-right: 0.3rem; /* Espacio entre botones */
+      margin-right: 0.3rem;
       border: none;
       border-radius: 4px;
       cursor: pointer;
@@ -80,8 +80,8 @@
       transition: background-color 0.3s ease;
     }
 
-    .tabla-usuarios button:first-of-type { /* Botón Guardar */
-      background-color: #28a745; /* Verde para guardar */
+    .tabla-usuarios button:first-of-type { 
+      background-color: #28a745; 
       color: white;
     }
 
@@ -89,8 +89,8 @@
       background-color: #218838;
     }
 
-    .tabla-usuarios button:last-of-type { /* Botón Eliminar */
-      background-color: #dc3545; /* Rojo para eliminar */
+    .tabla-usuarios button:last-of-type { 
+      background-color: #dc3545; 
       color: white;
     }
 
@@ -99,32 +99,32 @@
     }
 
     /* Media Queries para responsividad de la tabla */
-    @media (max-width: 768px) { /* Ajustado el breakpoint para mayor compatibilidad */
+    @media (max-width: 768px) { 
       .tabla-usuarios, .tabla-usuarios thead, .tabla-usuarios tbody, .tabla-usuarios th, .tabla-usuarios td, .tabla-usuarios tr {
         display: block;
       }
       .tabla-usuarios thead {
-        display: none; /* Oculta el encabezado original en móviles */
+        display: none; 
       }
       .tabla-usuarios tr {
-        margin-bottom: 1rem; /* Espacio entre filas en móviles */
+        margin-bottom: 1rem; 
         border: 1px solid #e0e0e0;
         border-radius: 8px;
         padding: 0.5rem;
       }
       .tabla-usuarios td {
         position: relative;
-        padding-left: 55%; /* Espacio para el pseudo-elemento */
-        text-align: right; /* Texto alineado a la derecha en el contenido real */
-        margin-bottom: 5px; /* Espacio entre celdas */
-        border: none; /* Eliminar borde de celdas individuales */
+        padding-left: 55%; 
+        text-align: right; 
+        margin-bottom: 5px; 
+        border: none; 
       }
       .tabla-usuarios td::before {
-        content: attr(data-label); /* Usa el atributo data-label */
+        content: attr(data-label); 
         position: absolute;
         left: 10px;
-        width: 45%; /* Ancho para la etiqueta del pseudo-elemento */
-        text-align: left; /* Etiqueta alineada a la izquierda */
+        width: 45%; 
+        text-align: left; 
         font-weight: bold;
         color: #555;
       }
@@ -225,14 +225,11 @@
         });
       }
 
-      // Cargar usuarios al inicio si el administrador ya está logueado (por ejemplo, si se refresca la página)
-      // Aunque para una mayor seguridad, deberías manejar sesiones o tokens.
-      // Por ahora, nos aseguramos de que el contenedor ABM no se muestre si no hay acceso.
-      // La visibilidad se controla con verificarAcceso()
+      
     });
 
     /**
-     * Verifica las credenciales del administrador y muestra la interfaz ABM.
+     * Verifica las credenciales del administrador 
      */
     function verificarAcceso() {
       const emailInput = document.getElementById('admin-email');
@@ -247,7 +244,7 @@
       if (email === ADMIN_USER.email && pass === ADMIN_USER.password) {
         loginAdminSection.style.display = 'none';
         abmContainer.style.display = 'block';
-        cargarUsuarios(); // Carga los usuarios una vez que el admin ha iniciado sesión
+        cargarUsuarios(); 
         errorMsg.textContent = ''; // Limpiar mensaje de error
       } else {
         errorMsg.textContent = "⚠️ Acceso denegado. Credenciales inválidas.";
@@ -263,11 +260,11 @@
     function cargarUsuarios() {
       const tbody = document.querySelector("#tabla-usuarios tbody");
       tbody.innerHTML = ""; // Limpia la tabla antes de cargar
-      // Asegurarse de que el usuario 'admin' exista, si no, lo agrega
+      
       inicializarUsuariosAdmin();
       const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
 
-      // Filtra el usuario 'admin' para no mostrarlo en la tabla si no es deseado
+      
       const usuariosFiltrados = usuarios.filter(user => user.email !== ADMIN_USER.email);
 
       if (usuariosFiltrados.length === 0) {
@@ -278,12 +275,10 @@
       }
 
       usuariosFiltrados.forEach((usuario, index) => {
-        // Asigna un ID único a cada usuario para mapear de forma más robusta
-        // Esto es importante si el orden puede cambiar o si se añaden/eliminan usuarios
-        // de forma no secuencial.
+        
         const userId = usuario.id || `user-${Date.now()}-${index}`; // Genera un ID si no existe
-        usuario.id = userId; // Guarda el ID en el objeto usuario
-        // Actualiza localStorage para persistir el ID si es nuevo
+        usuario.id = userId; 
+       
         localStorage.setItem('usuarios', JSON.stringify(usuarios));
 
         const tr = document.createElement("tr");
@@ -303,14 +298,14 @@
 
     /**
      * Inicializa el usuario 'admin' en localStorage si no existe.
-     * Esto asegura que siempre haya un usuario con el que loguearse.
+     
      */
     function inicializarUsuariosAdmin() {
       let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
       const adminExists = usuarios.some(user => user.email === ADMIN_USER.email);
 
       if (!adminExists) {
-        // Añade el admin con un ID fijo para evitar duplicados en cada carga
+        
         usuarios.push({ ...ADMIN_USER, id: 'admin-fixed-id' });
         localStorage.setItem('usuarios', JSON.stringify(usuarios));
       }
@@ -319,7 +314,7 @@
 
     /**
      * Guarda los cambios de un usuario específico en localStorage.
-     * @param {string} userId - El ID único del usuario a guardar.
+     
      */
     function guardarCambios(userId) {
       const nombreInput = document.getElementById(`nombre-${userId}`);
@@ -339,7 +334,7 @@
       const userIndex = usuarios.findIndex(u => u.id === userId);
 
       if (userIndex !== -1) {
-        // Verificar si el email ya existe en otro usuario (excluyendo el actual)
+        
         const emailExists = usuarios.some((user, idx) =>
           idx !== userIndex && user.email === emailInput.value
         );
@@ -351,10 +346,10 @@
 
         usuarios[userIndex].nombre = nombreInput.value;
         usuarios[userIndex].email = emailInput.value;
-        usuarios[userIndex].password = passwordInput.value; // En una app real, esto debería ser hasheado
+        usuarios[userIndex].password = passwordInput.value; 
         localStorage.setItem('usuarios', JSON.stringify(usuarios));
         alert("✅ Cambios guardados correctamente.");
-        cargarUsuarios(); // Recargar la tabla para reflejar posibles ordenamientos o actualizaciones
+        cargarUsuarios(); // Recargar la tabla
       } else {
         alert("Error: Usuario no encontrado para guardar cambios.");
       }
@@ -362,13 +357,13 @@
 
     /**
      * Elimina un usuario específico de localStorage.
-     * @param {string} userId - El ID único del usuario a eliminar.
+     
      */
     function eliminarUsuario(userId) {
       let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
       const userIndex = usuarios.findIndex(u => u.id === userId);
 
-      // No permitir eliminar al usuario administrador fijo
+      
       if (userId === ADMIN_USER.id) {
           alert("🚫 No puedes eliminar al usuario administrador predefinido.");
           return;
@@ -388,15 +383,14 @@
 
     /**
      * Valida el formato de un email.
-     * @param {string} email - El email a validar.
-     * @returns {boolean} - True si el email es válido, false en caso contrario.
+     
      */
     function validateEmail(email) {
       const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return re.test(String(email).toLowerCase());
     }
 
-    // Asegurarse de que el usuario administrador esté inicializado al cargar la página
+   
     inicializarUsuariosAdmin();
   </script>
 </body>
